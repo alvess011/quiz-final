@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Ortopédico - Salud para sus Pies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        .fade-in { animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* Animação suave nos botões */
+        .btn-option { transition: all 0.2s; }
+        .btn-option:active { transform: scale(0.98); background-color: #f0fdf4; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-3">
+
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-gray-100" id="quiz-container">
+        
+        <div class="w-full bg-gray-200 h-1.5">
+            <div class="bg-green-600 h-1.5 transition-all duration-500 rounded-r-full" style="width: 0%" id="progress-bar"></div>
+        </div>
+
+        <div class="p-6 md:p-8">
+            
+            <div id="step-0">
+                <div class="text-center mb-6">
+                    <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Test Gratuito</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center leading-tight">
+                    ¿Le duelen los pies o la espalda al caminar? 🦶
+                </h1>
+                <p class="text-gray-600 mb-8 text-center text-lg">
+                    Descubra el calzado ortopédico ideal para su tipo de pisada en <strong>menos de 1 minuto</strong>.
+                </p>
+                
+                <div class="bg-blue-50 p-4 rounded-lg mb-8 border border-blue-100">
+                    <p class="text-sm text-blue-800 text-center flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Recomendado por especialistas
+                    </p>
+                </div>
+
+                <button onclick="nextStep(1)" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-green-700 transition transform hover:-translate-y-1 text-lg">
+                    INICIAR TEST AHORA
+                </button>
+                <p class="text-xs text-gray-400 text-center mt-4 flex justify-center items-center gap-1">
+                    🔒 Sus datos están 100% seguros
+                </p>
+            </div>
+
+            <div id="step-1" class="hidden">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">1. ¿En qué zona siente mayor molestia?</h2>
+                <p class="text-sm text-gray-500 mb-6">Seleccione la opción que mejor describe su dolor actual.</p>
+                
+                <div class="space-y-3">
+                    <button onclick="selectOption('dor', 'calcanhar'); nextStep(2)" class="btn-option w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 focus:outline-none flex items-center gap-3 group">
+                        <span class="text-2xl bg-gray-100 p-2 rounded-lg group-hover:bg-white">🔥</span>
+                        <div>
+                            <span class="font-bold text-gray-800 block">Talones / Planta</span>
+                            <span class="text-xs text-gray-500">Posible Espolón o Fascitis</span>
+                        </div>
+                    </button>
+
+                    <button onclick="selectOption('dor', 'dedos'); nextStep(2)" class="btn-option w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 focus:outline-none flex items-center gap-3 group">
+                        <span class="text-2xl bg-gray-100 p-2 rounded-lg group-hover:bg-white">🦶</span>
+                        <div>
+                            <span class="font-bold text-gray-800 block">Dedos / Empeine</span>
+                            <span class="text-xs text-gray-500">Juanetes, Callos o Dedos montados</span>
+                        </div>
+                    </button>
+
+                    <button onclick="selectOption('dor', 'geral'); nextStep(2)" class="btn-option w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 focus:outline-none flex items-center gap-3 group">
+                        <span class="text-2xl bg-gray-100 p-2 rounded-lg group-hover:bg-white">✨</span>
+                        <div>
+                            <span class="font-bold text-gray-800 block">Cansancio General</span>
+                            <span class="text-xs text-gray-500">Hinchazón o piernas pesadas</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-2" class="hidden">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">2. ¿Cuánto tiempo pasa de pie al día?</h2>
+                <p class="text-sm text-gray-500 mb-6">Esto nos ayuda a definir la amortiguación necesaria.</p>
+                
+                <div class="space-y-3">
+                    <button onclick="nextStep(3)" class="btn-option w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 focus:outline-none">
+                        🏠 <strong>Poco</strong> (Menos de 2 horas)
+                    </button>
+                    <button onclick="nextStep(3)" class="btn-option w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 focus:outline-none">
+                        🏢 <strong>Moderado</strong> (4 a 6 horas diarias)
+                    </button>
+                    <button onclick="nextStep(3)" class="btn-option w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 focus:outline-none">
+                        ⚡ <strong>Intenso</strong> (Más de 8 horas / Trabajo duro)
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-3" class="hidden text-center py-12">
+                <div class="relative w-16 h-16 mx-auto mb-6">
+                    <div class="absolute top-0 left-0 w-full h-full border-4 border-gray-200 rounded-full"></div>
+                    <div class="absolute top-0 left-0 w-full h-full border-4 border-green-600 rounded-full animate-spin border-t-transparent"></div>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800">Analizando su perfil...</h3>
+                <p class="text-sm text-gray-500 mt-2">Buscando en nuestro inventario en Bogotá...</p>
+                <div class="mt-6 text-xs text-gray-400">Tecnología Orto-Soft™</div>
+            </div>
+
+            <div id="step-result" class="hidden">
+                <div class="text-center mb-6">
+                    <div class="bg-green-100 text-green-800 text-sm font-bold px-4 py-2 rounded-full inline-flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        COMPATIBILIDAD: 98%
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">¡Análisis Completo!</h2>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
+                    <p class="text-gray-700 text-sm leading-relaxed" id="result-text">
+                        Cargando recomendación...
+                    </p>
+                </div>
+                
+                <div class="border border-gray-200 rounded-xl overflow-hidden mb-6 shadow-sm">
+                    <div class="bg-gray-100 h-48 flex items-center justify-center text-gray-400">
+                        <img src="https://via.placeholder.com/400x300?text=Zapatos+Ortopedicos" alt="Zapato Recomendado" class="w-full h-full object-cover opacity-80">
+                    </div>
+
+                    <div class="p-4 bg-white">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">Sandalia Ortopédica Confort™</h3>
+                                <p class="text-xs text-gray-500">Corrector de Pisada + Plantilla Gel</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">-30% HOY</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-end gap-2 mt-3">
+                            <span class="text-gray-400 line-through text-sm">$ 230.000</span>
+                            <span class="text-2xl font-bold text-green-600">$ 159.900</span>
+                            <span class="text-xs text-gray-500 mb-1">COP</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 px-4 py-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-600">
+                        <span class="flex items-center gap-1">🚚 Envío Gratis</span>
+                        <span class="flex items-center gap-1">🏠 <strong>Pago Contra Entrega</strong></span>
+                    </div>
+                </div>
+
+                <a href="LINK_DO_SEU_CHECKOUT_AQUI" class="block w-full bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-green-700 transition animate-bounce text-center text-lg flex items-center justify-center gap-2">
+                    PEDIR AHORA - PAGA EN CASA
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+                
+                <p class="text-center text-xs text-gray-400 mt-4">
+                    Oferta válida por tiempo limitado para Colombia 🇨🇴
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let userAnswers = {};
+
+        function selectOption(key, value) {
+            userAnswers[key] = value;
+        }
+
+        function nextStep(step) {
+            // Esconde todos os steps
+            document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
+            
+            // Atualiza barra de progresso
+            let progress = (step / 3) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+
+            if (step === 3) {
+                // Tela de carregamento
+                document.getElementById('step-3').classList.remove('hidden');
+                // Scroll para o topo (boa prática em mobile)
+                window.scrollTo(0, 0);
+                
+                setTimeout(() => {
+                    showResult();
+                }, 2500); // 2.5s para dar credibilidade à "análise"
+            } else {
+                document.getElementById('step-' + step).classList.remove('hidden');
+            }
+        }
+
+        function showResult() {
+            document.getElementById('step-3').classList.add('hidden');
+            document.getElementById('step-result').classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '100%';
+            window.scrollTo(0, 0);
+
+            let textElement = document.getElementById('result-text');
+            
+            // Lógica de Copy Personalizada
+            if (userAnswers['dor'] === 'calcanhar') {
+                textElement.innerHTML = "Detectamos sensibilidad en sus <strong>Talones</strong>. Usted necesita un calzado con <strong>Cámara de Aire</strong> y fondo suave para aliviar el impacto del espolón.";
+            } else if (userAnswers['dor'] === 'dedos') {
+                textElement.innerHTML = "Para aliviar sus <strong>Juanetes</strong>, hemos seleccionado un modelo <strong>Flexible (Wide-Fit)</strong> que no aprieta y permite que sus dedos descansen.";
+            } else {
+                textElement.innerHTML = "Para soportar <strong>más de 8 horas de pie</strong> sin cansancio, usted necesita nuestra tecnología de <strong>Retorno de Energía</strong>. Ideal para circulación.";
+            }
+        }
+    </script>
+</body>
+</html>
